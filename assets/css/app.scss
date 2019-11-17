@@ -1,0 +1,20 @@
+@import "~bootstrap/scss/bootstrap";
+
+$base-color: #3f4e55;
+$container-color:#7b9a8f;
+
+body {
+    background-color: $container-color;
+    font: 400 16px/20px 'Roboto', sans-serif;
+}
+
+nav{
+    background-color: $base-color;
+}
+
+h1{
+    color: #ffffff;
+    font: 400 16px/72px 'Rationale', sans-serif;
+    font-size: 72px;
+}
+
