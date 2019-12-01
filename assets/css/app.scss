@@ -1,20 +1,68 @@
 @import "~bootstrap/scss/bootstrap";
 
 $base-color: #3f4e55;
-$container-color:#7b9a8f;
+$container-color: #7b9a8f;
+$text-color: #555;
+$text-colordesc: #444;
 
 body {
     background-color: $container-color;
     font: 400 16px/20px 'Roboto', sans-serif;
+    margin-left: 10px;
+    margin-right: 10px;
+    p{
+        color: $text-color;
+        font: 16px 'Roboto', sans-serif;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: justify;
+    }
 }
 
 nav{
     background-color: $base-color;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 h1{
     color: #ffffff;
     font: 400 16px/72px 'Rationale', sans-serif;
     font-size: 72px;
+    text-align: center;
+}
+h2{
+    color: $text-color;
+    font: 400 16px/20px 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
 }
 
+h3{
+    color: #FFFFFF;
+    font: 400 16px/24px 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    background-color: $base-color;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+
+a{
+    color:$text-color,
+}
+
+.card-img-top{
+    height:450px;
+}
+
+.card{
+    background-color: $container-color;
+    border: 0px;
+    border-radius: 0px;
+}
+.row{
+    justify-content: center;
+
+
+}

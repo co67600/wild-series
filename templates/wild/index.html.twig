@@ -3,15 +3,26 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries de la table program : </h1>
+    <h1>Toutes les séries disponibles : </h1>
+    <div class="row">
     {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-            <p>{{ program.summary }}</p>
-        </div>
+            <div class="card" style="width: 19rem;">
+                <img class="card-img-top"src="{{program.poster}}" alt="{{ program.title }} poster">
+                <div class="card-body">
+                    <a href="{{ path('wild_show',{"slug" : program.title | lower | replace({" " : "-"})}) }}">
+                    <h2 class="">{{ loop.index }} - {{ program.title }}</h2>
+                    <h5>Catégorie : {{ program.category.name }}</h5>
+                    <p>{{ program.summary }}</p>
+                    </a>
+                </div>
+            </div>
+
     {% else %}
         Aucune série trouvée.
+
     {% endfor %}
+
+    </div>
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
     </a>

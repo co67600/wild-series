@@ -1,16 +1,40 @@
 <?php
-// src/Controller/WildController.php
+
 namespace App\Controller;
 
-use App\Entity\Category;
+use App\Entity\Episode;
 use App\Entity\Program;
+use App\Entity\Category;
+use App\Entity\Season;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation\Article;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 Class WildController extends AbstractController
 {
+
+    public function showByProgram($program) {
+        return $program->getSeasons();
+    }
+    public function showBySeason($season) {
+        return $season->getEpisodes();
+    }
+    public function getAllPrograms() {
+        $programs = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findAll();
+        return $programs;
+    }
+    public function getAllCategories(){
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+        return $categories;
+    }
+
+
+
+
     /**
      * @Route("/wild/",
      *     name="wild_index")
@@ -21,6 +45,7 @@ Class WildController extends AbstractController
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
             ->findAll();
+
         if (!$programs) {
             throw $this ->createNotFoundException(
                 'No program found in program\'s table.'
@@ -54,15 +79,23 @@ Class WildController extends AbstractController
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
             ->findOneBy(['title' => mb_strtolower($slug)]);
+
         if (!$program) {
             throw $this->createNotFoundException(
                 'No program with '.$slug.' title, found in program\'s table.'
             );
         }
+        $seasons = $this->showByProgram($program);
+        $programs = $this->getAllPrograms();
+        $categories =$this->getAllCategories();
+
 
         return $this->render('wild/show.html.twig',
             ['program' => $program,
-                'slug' => $slug,
+                'slug'  => $slug,
+                'seasons' => $seasons,
+                'programs' => $programs,
+                'categories' => $categories
                 ]);
     }
 
@@ -70,12 +103,16 @@ Class WildController extends AbstractController
      * @param string $categoryName
      * @Route("/wild/category/{categoryName}",
      *     requirements={"category"="[a-z0-9-]+"},
-     *     defaults={"category"="Aucune catégorie sélectionnée, veuillez choisir une catégorie"},
      *     name="show_category")
      * @return Response
      */
     public function showByCategory(string $categoryName) : Response
     {
+        if (!$categoryName) {
+            throw $this
+                ->createNotFoundException('No category has been sent to find a program in program\'s table.');
+        }
+
         $category = $this ->getDoctrine()
             ->getRepository(Category::class)
             ->findOneBy(['name'=>$categoryName]);
@@ -84,13 +121,28 @@ Class WildController extends AbstractController
             ->getRepository(Program::class)
             ->findBy(['category'=>$category->getId()], ['id'=>'DESC'], 3);
 
-
             return $this->render('wild/category.html.twig',
                 ['category' => $categoryName,
                     'programs' => $program,
                 ]);
 
     }
+    /**
+     * @Route("/wild/season/{id}-{season}", name="wild_season")
+     * @param Season $season
+     * @param Program $id
+     * @return Response
+     */
+    public function season(Program $id, Season $season):Response {
+
+        $episodes = $this->showBySeason($season);
+        $programs = $this->getAllPrograms();
+        $categories =$this->getAllCategories();
+
+        return $this->render('wild/season.html.twig', ['episodes' => $episodes,
+            'program' => $id, 'programs' => $programs,'categories' => $categories]);
+    }
+
 
     /**
      * @Route("/wild/delete/{id}", name="wild_delete", methods={"DELETE"}))
