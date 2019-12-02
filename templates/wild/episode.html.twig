@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="card mb-3" style="max-width: 100%;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img class="card-img" src="{{ program.poster }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="mt-0">{{ program.title }} </h3>
+                        <p>{{ program.summary }}</p>
+                    <h3 class="mt-0">Détail de la saison  </h3>
+                        <p>Année : {{ season.year }}</p>
+                        <p>Description : {{ season.description }}</p>
+                    <h3 class="mt-0">Détail de l'épisode  </h3>
+                        <p>Titre : {{ episode.title }}</p>
+                        <p>Épisode numéro  {{ episode.number }}</p>
+                        <p>Synopsis : {{ episode.synopsis }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_index') }}">
+        Retour à l'accueil
+    </a>
+
+{% endblock %}
