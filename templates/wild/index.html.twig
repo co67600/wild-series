@@ -6,7 +6,7 @@
     <h1>Toutes les séries disponibles : </h1>
     <div class="row">
     {% for program in programs %}
-            <div class="card" style="width: 19rem;">
+            <div class="col-md-4" >
                 <img class="card-img-top"src="{{program.poster}}" alt="{{ program.title }} poster">
                 <div class="card-body">
                     <a href="{{ path('wild_show',{"slug" : program.title | lower | replace({" " : "-"})}) }}">
@@ -21,9 +21,26 @@
         Aucune série trouvée.
 
     {% endfor %}
-
     </div>
+
+
+{#
+    {{ form_start(form) }}
+    {{ form_row(form.searchField) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
+#}
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+        <button class="btn"> {{ button_label|default('Save') }}  </button>
+    {{ form_end(form) }}
+
+
+
+
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
     </a>
 {% endblock %}
+
