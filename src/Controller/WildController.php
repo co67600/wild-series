@@ -6,14 +6,19 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Category;
 use App\Entity\Season;
+use App\Form\ProgramSearchType;
+use App\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Tests\Compiler\E;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+
+
 
 Class WildController extends AbstractController
 {
-
     public function showByProgram($program) {
         return $program->getSeasons();
     }
@@ -34,14 +39,12 @@ Class WildController extends AbstractController
     }
 
 
-
-
     /**
      * @Route("/wild/",
-     *     name="wild_index")
+     *     name="wild_index", methods="GET|POST")
      * @return Response A response instance
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
@@ -51,11 +54,28 @@ Class WildController extends AbstractController
             throw $this ->createNotFoundException(
                 'No program found in program\'s table.'
             );
+        };
+
+        $form = $this->createForm(
+            ProgramSearchType::class,
+            null,
+            ['method' => Request::METHOD_GET]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $data = $form->getData();
+            // $data contains $_POST data
+            // TODO : Faire une recherche dans la BDD avec les infos de $data…
         }
 
         return $this->render(
             'wild/index.html.twig',
-            ['programs' => $programs]
+            ['programs' => $programs,
+                'form' => $form->createView(),
+                //'category' => $category,
+                ]
         );
     }
 
@@ -164,7 +184,6 @@ Class WildController extends AbstractController
             ]
         );
     }
-
 
 
 
