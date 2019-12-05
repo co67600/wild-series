@@ -6,14 +6,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">ici le Logo <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/"><img src="{{ asset('build/images/logowildseries.png') }}" alt="logo"> <span class="sr-only">(current)</span></a>
+
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Catégories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path('show_category', { 'categoryName': "Horreur" }) }}">Horreur</a>
+                  {# <a class="dropdown-item" href="{{ path('show_category', { 'categoryName': "Horreur" }) }}">Horreur</a>#}
+                    {% for category in categoriesAll.getAll %}
+                        <a class="dropdown-item" href="{{ path('show_category', { "categoryName" : category.name }) }}">{{ category.name }}</a>
+                    {% endfor %}
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Séries
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for program in programsAll.getAll %}
+                        <a class="dropdown-item" href="{{ path('wild_show', {"slug" : program.title | lower | replace({" " : "-"})}) }}">{{ program.title }}</a>
+                    {% endfor %}
+
                 </div>
             </li>
             <li class="nav-item dropdown">
