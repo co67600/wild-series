@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 
 class CategoryController extends AbstractController
@@ -24,7 +25,6 @@ class CategoryController extends AbstractController
             'category' => $categoryRepository->findAll(),
         ]);
     }
-
 
 
     /**
@@ -46,6 +46,19 @@ class CategoryController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
+
+    /**
+     * @Route("/category/navbar", name="navbar_category", methods="GET|POST")
+     *
+     */
+
+    public function navMenu(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('wild/navbar.html.twig',[
+            'category' => $categoryRepository->findAll(),
+        ]);
+    }
+
 }
 
 
