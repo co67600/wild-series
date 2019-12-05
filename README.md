@@ -8,3 +8,6 @@ lien vers video quete 10 Le param converter : https://www.loom.com/share/c1613d1
 
 
 lien vers video quete 11 Gardez la “form” !: https://www.loom.com/share/35bd82be8ff14f58817361e13cf25693
+
+
+lien vers video quete 12 Générer un CRUD!: https://www.loom.com/share/2bc308705988499c9f0457a3c45c2cf6
