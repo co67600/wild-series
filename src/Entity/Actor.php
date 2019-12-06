@@ -25,6 +25,7 @@ class Actor
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Program", inversedBy="actors")
+
      */
     private $programs;
 
