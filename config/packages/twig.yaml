@@ -6,4 +6,5 @@ twig:
     globals:
         categoriesAll: '@App\Service\CategoriesManagement'
         programsAll: '@App\Service\ProgramsManagement'
+        actorsAll: '@App\Service\ActorsManagement'
 

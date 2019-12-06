@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Category;
@@ -185,15 +186,21 @@ Class WildController extends AbstractController
         );
     }
 
-
-
     /**
-     * @Route("/wild/delete/{id}", name="wild_delete", methods={"DELETE"}))
+     * @Route("/wild/actor/{id}", name="show_actor")
+     * @param Actor $actor
+     * @return Response
      */
-    public function delete($id): Response
+
+    public function showActor(Actor $actor): Response
     {
-        return $this->render('wild/delete.html.twig', ['id' => $id]);
+        return $this->render('wild/showActor.html.twig', [
+                'actor' => $actor,
+            ]
+        );
     }
+
+
 
 
 }
