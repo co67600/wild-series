@@ -15,4 +15,6 @@ lien vers video quete 12 Générer un CRUD!: https://www.loom.com/share/2bc30870
 
 lien vers video quete 13 Doctrine Relation Many to many : https://www.loom.com/share/b7e81bc29d70477bb7b2c37ae4ae4827
 
-lien vers video quete 14 14 EntityType : https://www.loom.com/share/fab5e63fe4994c5eb8f08cf683eac1c2
+lien vers video quete 14 EntityType : https://www.loom.com/share/fab5e63fe4994c5eb8f08cf683eac1c2
+
+lien vers video quete 15 Les fixtures : https://www.loom.com/share/91a8f1ce328147b8a1b135ed938a789f
