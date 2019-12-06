@@ -37,10 +37,10 @@
                     Acteurs
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    {% for actor in actorsAll.getAll %}
+                        <a class="dropdown-item" href="{{ path('show_actor', { "id" : actor.id }) }}">{{ actor.name }}</a>
+                    {% endfor %}
+
                 </div>
             </li>
             <li class="nav-item dropdown">

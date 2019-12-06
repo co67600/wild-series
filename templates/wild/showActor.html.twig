@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div>
+        <h1>Acteur</h1>
+        <h2>{{ actor.name }}</h2>
+        {% for program in actor.programs %}
+            <a href="{{ path('wild_show',{"slug" : program.title | lower | replace({" " : "-"})}) }}">
+                <h3>{{ program.title }}</h3></a>
+            <br/>
+            <p>{{ program.summary }}</p>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_index') }}">
+        Retour à l'accueil
+    </a>
+
+{% endblock %}
