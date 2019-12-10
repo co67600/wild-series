@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
@@ -28,6 +29,7 @@ class Category
      * @ORM\OneToMany(targetEntity="App\Entity\Program", mappedBy="category")
      */
     private $programs;
+
 
 
     public function __construct()
@@ -91,4 +93,5 @@ class Category
 
         return $this;
     }
+
 }

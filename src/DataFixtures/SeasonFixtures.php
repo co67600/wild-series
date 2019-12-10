@@ -1,37 +1,35 @@
 <?php
-
 namespace App\DataFixtures;
-
+use App\Entity\Actor;
+use App\Entity\Episode;
 use App\Entity\Season;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Faker;
-
-class SeasonFixtures extends Fixture implements DependentFixtureInterface
+use Doctrine\Common\Persistence\ObjectManager;
+use  Faker;
+class SeasonFixtures extends Fixture  implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $faker  =  Faker\Factory::create('en_US');
-        for ($i = 0; $i <= 50; $i++) {
+        $seasondescription = array();
+        for ($i = 0; $i < 10; $i++) {
+            $faker  =  Faker\Factory::create('fr_FR');
+            $faker = $faker->word;
+            array_push ($seasondescription, $faker);
+        }
+        for ($i = 0; $i < count($seasondescription);$i++) {
             $season = new Season();
-            $season->setDescription('Season : '.$faker->sentence);
-            $season->setYear($faker->year);
-            $season->setNumber($faker->numberBetween(1, 10));
+            $season->setDescription($seasondescription[$i]);
+            $season->setYear(rand(1980,2010));
+            $season->setProgram($this->getReference('program_0'));
             $this->addReference('season_' . $i, $season);
-            $season->setProgram($this->getReference('program_'.rand(0, 5)));
             $manager->persist($season);
         }
         $manager->flush();
-
     }
-
     public function getDependencies()
-
     {
         return [ProgramFixtures::class];
-
     }
-
-
 }

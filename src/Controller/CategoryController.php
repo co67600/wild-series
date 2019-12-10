@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
@@ -10,12 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-
-
 class CategoryController extends AbstractController
 {
-
     /**
      * @Route("/category/", name="category_index", methods={"GET"})
      */
@@ -25,8 +19,6 @@ class CategoryController extends AbstractController
             'category' => $categoryRepository->findAll(),
         ]);
     }
-
-
     /**
      * @Route("/category/add", name="add_category", methods="GET|POST")
      * @param Request $request
@@ -42,23 +34,18 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
         }
-            return $this->render('category/index.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
-
+        return $this->render('category/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
     /**
      * @Route("/category/navbar", name="navbar_category", methods="GET|POST")
      *
      */
-
     public function navMenu(CategoryRepository $categoryRepository): Response
     {
         return $this->render('wild/navbar.html.twig',[
             'category' => $categoryRepository->findAll(),
         ]);
     }
-
 }
-
-

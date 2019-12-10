@@ -23,12 +23,24 @@
                 <th>Poster</th>
                 <td>{{ program.poster }}</td>
             </tr>
+            <tr>
+                <th>Acteurs</th>
+                <td>
+                    {% for actor in program.actors %}
+                        <a href="{{path('actor_show',{'slug': actor.slug })}}">{{actor.name}}</a>
+                    {% else %}
+                        Aucun acteur pour cette série
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('program_index') }}">back to list</a>
-
-    <a href="{{ path('program_edit', {'id': program.id}) }}">edit</a>
+    <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
+    <br> <br>
 
     {{ include('program/_delete_form.html.twig') }}
+    <br>
+    <a href="{{ path('program_index') }}">back to list</a>
+    <br>
 {% endblock %}

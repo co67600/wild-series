@@ -9,7 +9,7 @@
             <div class="col-md-4" >
                 <img class="card-img-top"src="{{program.poster}}" alt="{{ program.title }} poster">
                 <div class="card-body">
-                    <a href="{{ path('wild_show',{"slug" : program.title | lower | replace({" " : "-"})}) }}">
+                    <a href="{{ path('wild_show',{"slug" : program.slug | lower | replace({" " : "-"})}) }}">
                     <h2 class="">{{ loop.index }} - {{ program.title }}</h2>
                     <h5>Catégorie : {{ program.category.name }}</h5>
                     <p>{{ program.summary }}</p>
