@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 
+
 Class WildController extends AbstractController
 {
     public function showByProgram($program) {
@@ -81,14 +82,13 @@ Class WildController extends AbstractController
     }
 
     /**
-     * @param string $slug The slugger
-     * @Route("/wild/show/{slug}",
-     *     requirements={"slug"="[a-z0-9-]+"},
+     * @param string $slug
+     * @Route("/wild/show/{ {slug}",
      *     defaults={"slug"="Aucune série sélectionnée, veuillez choisir une série"},
      *     name="wild_show")
      * @return Response
      */
-    public function show(?string $slug): Response
+    public function show(string $slug): Response
     {
         if (!$slug){
             throw $this
@@ -199,6 +199,8 @@ Class WildController extends AbstractController
             ]
         );
     }
+
+
 
 
 
