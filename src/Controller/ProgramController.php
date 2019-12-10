@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Slugify;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Bridge\Google\Smtp\GmailTransport;
 
 
 
@@ -20,6 +25,8 @@ class ProgramController extends AbstractController
 {
     /**
      * @Route("/", name="program_index", methods={"GET"})
+     *
+     *
      */
     public function index(ProgramRepository $programRepository): Response
     {
@@ -33,8 +40,10 @@ class ProgramController extends AbstractController
      * @param Request $request
      * @param Slugify $slugify
      * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function new(Request $request, Slugify $slugify): Response
+
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
@@ -46,6 +55,17 @@ class ProgramController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($program);
             $entityManager->flush();
+
+            $email = (new TemplatedEmail())
+
+                ->from($_ENV['MAILER_SENDER'])
+                ->to('cdallongeville22@gmail.com')
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->htmlTemplate('email/notification.html.twig')
+                ->context([
+                'program' => $program,
+            ]);
+            $mailer->send($email);
 
             return $this->redirectToRoute('program_index');
         }
