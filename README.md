@@ -21,3 +21,6 @@ lien vers video quete 15 Les fixtures : https://www.loom.com/share/91a8f1ce32814
 
 
 lien vers video quete 16 Les services : https://www.loom.com/share/c7f0b3e74b16401dbde0fa8b1bbaa6f0
+
+
+lien vers video quete 17 envoi d email : https://www.loom.com/share/5d37feaa598b4e939d17c6c2a890054c
