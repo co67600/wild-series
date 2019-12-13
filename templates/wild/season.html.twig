@@ -13,10 +13,13 @@
     </div>
 
     {% for episode in episodes %}
-
+        <a href="{{ path('wild_episode', { 'id' : episode.id } ) }}">
         <h4>Episode {{ episode.number }} : {{ episode.title }}</h4>
+        </a>
         <p>{{ episode.synopsis }}</p>
     {% endfor %}
+
+
 
 
 

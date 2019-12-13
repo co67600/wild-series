@@ -2,18 +2,27 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Actor;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
-use App\Entity\Category;
 use App\Entity\Season;
-use App\Form\ProgramSearchType;
 use App\Form\CategoryType;
+use App\Form\ActorType;
+use App\Form\CommentType;
+use App\Form\ProgramSearchType;
+use App\Repository\EpisodeRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Expr\New_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Tests\Compiler\E;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 
 
@@ -83,7 +92,7 @@ Class WildController extends AbstractController
 
     /**
      * @param string $slug
-     * @Route("/wild/show/{ {slug}",
+     * @Route("/wild/show/{slug}",
      *     defaults={"slug"="Aucune série sélectionnée, veuillez choisir une série"},
      *     name="wild_show")
      * @return Response
@@ -110,7 +119,6 @@ Class WildController extends AbstractController
         $seasons = $this->showByProgram($program);
         $programs = $this->getAllPrograms();
         $categories =$this->getAllCategories();
-
 
         return $this->render('wild/show.html.twig',
             ['program' => $program,
@@ -172,18 +180,44 @@ Class WildController extends AbstractController
      * @return Response
      */
 
-    public function showEpisode(Episode $episode): Response
+    public function showEpisode(Episode $episode, Request $request, EntityManagerInterface $em ): Response
     {
+        $comment = New Comment();
+        $user = $this->getUser();
         $season = $episode->getSeason();
         $program = $season->getProgram();
-
-
-        return $this->render('wild/episode.html.twig', [
+        if (!$user) {
+            $form = $this
+                ->createForm(CommentType::class)
+                ->remove('comment')
+                ->remove('rate');
+            return $this->render("wild/episode.html.twig", [
                 'episode' => $episode,
                 'season' => $season,
                 'program'=> $program,
-            ]
-        );
+                'form' => $form->createView(),
+            ]);
+        }
+        $form = $this
+            ->createForm(CommentType::class, $comment)
+            ->add('poster', SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setAuthorId($user->getId());
+            $comment->setEpisode($episode);
+            $program = $season->getProgram();
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('wild_episode',['id' => $episode->getId()]);
+        }
+        $comment = $episode->getComments();
+        return $this->render("wild/episode.html.twig", [
+            'episode' => $episode,
+            'season' => $season,
+            'comments' => $comment,
+            'program'=> $program,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
