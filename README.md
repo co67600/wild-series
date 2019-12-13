@@ -24,3 +24,6 @@ lien vers video quete 16 Les services : https://www.loom.com/share/c7f0b3e74b164
 
 
 lien vers video quete 17 envoi d email : https://www.loom.com/share/5d37feaa598b4e939d17c6c2a890054c
+
+
+lien vers video quete 18 Gestion des utilisateurs : https://www.loom.com/share/1dc155e0f24b48d19ff2981a60dc7c89
