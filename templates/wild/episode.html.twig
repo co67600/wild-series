@@ -18,10 +18,25 @@
                         <p>Titre : {{ episode.title }}</p>
                         <p>Épisode numéro  {{ episode.number }}</p>
                         <p>Synopsis : {{ episode.synopsis }}</p>
+                    {% if comments is defined %}
+                    <h3 class="mt-0">Commentaires  </h3>
+                        {% for comment in comments %}
+                                <div>
+                                    <h2>Commentaire laissé par : utilisateur {{ comment.authorId }}</h2>
+                                    <p >{{ comment.comment }}</p>
+                                    <p >note : {{ comment.rate }}</p>
+                                </div>
+                        {% endfor %}
+                        <h3 class="mt-0">Laissez votre commentaire  </h3>
+                    {% endif %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
     </div>
+
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
     </a>
