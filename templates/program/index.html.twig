@@ -4,8 +4,10 @@
 
 {% block body %}
     <h1>Program index</h1>
-    <a class="btn btn-primary"  href="{{ path('program_new') }}">Créer nouveau</a>
-    
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary"  href="{{ path('program_new') }}">Créer nouveau</a>
+    {%endif%}
+
     <table class="table">
         <thead>
             <tr>
@@ -29,10 +31,10 @@
                     <a class="btn btn-primary" href="{{ path('program_show', {'slug': program.slug}) }}">Show</a>
                     <br>
                     <br>
-                    <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
-                    <br>
-                    <br>
-                    <a class="btn btn-primary" href="{{ path('program_delete', {'slug': program.slug}) }}">Delete</a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
+                    {%endif%}
+
                 </td>
             </tr>
         {% else %}
@@ -42,6 +44,8 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary"  href="{{ path('program_new') }}">Créer nouveau</a>
+    {%endif%}
 
-    <a class="btn btn-primary"  href="{{ path('program_new') }}">Créer nouveau</a>
 {% endblock %}

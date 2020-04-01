@@ -4,9 +4,9 @@
 
 {% block body %}
     <h1>Episode index</h1>
-
+    {% if is_granted("ROLE_ADMIN") %}
     <a class="btn btn-primary"  href="{{ path('episode_new') }}">Créer nouveau</a>
-
+    {%endif%}
     <table class="table">
         <thead>
             <tr>
@@ -28,8 +28,9 @@
                 <td>{{ episode.synopsis }}</td>
                 <td>
                     <a class="btn btn-primary"  href="{{ path('episode_show', {'slug': episode.slug}) }}">Show</a>
-                    <a class="btn btn-primary"  href="{{ path('episode_edit', {'slug': episode.slug}) }}">Edit</a>
-                    <a class="btn btn-primary"  href="{{ path('episode_delete', {'slug': episode.slug}) }}">Delete</a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="btn btn-primary"  href="{{ path('episode_edit', {'slug': episode.slug}) }}">Edit</a>
+                    {%endif%}
                 </td>
             </tr>
         {% else %}
@@ -39,5 +40,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-primary"  href="{{ path('episode_new') }}">Créer nouveau</a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary"  href="{{ path('episode_new') }}">Créer nouveau</a>
+    {%endif%}
 {% endblock %}
