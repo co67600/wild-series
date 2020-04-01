@@ -4,7 +4,10 @@
 
 {% block body %}
     <h1>Season index</h1>
-    <a href="{{ path('season_new') }}">Créer une nouvelle saison</a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('season_new') }}">Créer une nouvelle saison</a>
+    {%endif%}
+
     <table class="table">
         <thead>
             <tr>
@@ -23,8 +26,10 @@
                 <td>{{ season.description }}</td>
                 <td>{{ season.number }}</td>
                 <td>
-                    <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('season_show', {'id': season.id}) }}">show</a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="btn btn-primary" href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    {%endif%}
                 </td>
             </tr>
         {% else %}
@@ -34,6 +39,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('season_new') }}">Créer une nouvelle saison</a>
+    {%endif%}
 
 {% endblock %}

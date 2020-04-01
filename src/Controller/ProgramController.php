@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +26,6 @@ class ProgramController extends AbstractController
 {
     /**
      * @Route("/", name="program_index", methods={"GET"})
-     *
      *
      */
     public function index(ProgramRepository $programRepository): Response
@@ -88,6 +88,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="program_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Program $program, Slugify $slugify): Response
     {

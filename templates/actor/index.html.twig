@@ -4,7 +4,9 @@
 
 {% block body %}
     <h1>Actor index</h1>
-
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary"  href="{{ path('actor_new') }}">Créer nouveau</a>
+    {%endif%}
     <table class="table">
         <thead>
             <tr>
@@ -22,8 +24,9 @@
                 <td>{{ actor.slug }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('actor_show', {'slug': actor.slug}) }}">show</a>
-                    <a class="btn btn-primary" href="{{ path('actor_edit', {'slug': actor.slug}) }}">edit</a>
-                    <a class="btn btn-primary"  href="{{ path('actor_delete', {'slug': actor.slug}) }}">Delete</a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="btn btn-primary" href="{{ path('actor_edit', {'slug': actor.slug}) }}">edit</a>
+                    {%endif%}
                 </td>
             </tr>
         {% else %}
@@ -33,6 +36,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary"  href="{{ path('actor_new') }}">Créer nouveau</a>
+    {%endif%}
 
-    <a class="btn btn-primary"  href="{{ path('actor_new') }}">Créer nouveau</a>
+
 {% endblock %}

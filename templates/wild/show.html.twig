@@ -35,7 +35,9 @@
 
                     <br>
                     <br>
-
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Editer</a>
+                    {%endif%}
                     <a href="{{ path('app_index') }}">
                         Retour à l'accueil
                     </a>

@@ -36,11 +36,10 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
-    <br> <br>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
+    {%endif%}
 
-    {{ include('program/_delete_form.html.twig') }}
-    <br>
     <a href="{{ path('program_index') }}">back to list</a>
     <br>
 {% endblock %}
