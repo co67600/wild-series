@@ -63,6 +63,7 @@
         {% if app.user %}
             {{ app.user.email }}
             <a class="btn btn-light my-2 my-sm-0" href="{{ path('app_logout') }}"> Se déconnecter</a>
+            <a class="btn" href="{{ path('app_profile') }}"> <i class="far fa-user-circle"></i></a>
         {% else %}
             <a class="btn btn-light my-2 my-sm-0" href="{{ path('app_login') }}"> Se connecter</a>
         {% endif %}
