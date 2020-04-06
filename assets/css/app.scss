@@ -35,8 +35,6 @@ nav{
     padding-top: 0.6rem;
 }
 
-
-
 h1{
     color: #ffffff;
     font: 400 16px/72px 'Rationale', sans-serif;
@@ -60,12 +58,42 @@ h3{
     padding-bottom: 5px;
 }
 
+h4{
+    color: #FFFFFF;
+    font: 400 16px/24px 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: right;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+
+h5{
+    color: #FFFFFF;
+    font: 400 16px/24px 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: justify;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+
+
 a{
-    color:$text-color,
+    color:$text-color;
+}
+
+a:hover{
+    color:#ffffff;
+    text-decoration: none;
 }
 
 .card-img-top{
-    height:70%;
+    height:100%;
+}
+
+.card-img {
+    width: auto;
+    height: 645px;
+    border-radius: calc(0.25rem - 1px);
 }
 
 .card{
@@ -74,9 +102,7 @@ a{
     border-radius: 0px;
 }
 .row{
-    justify-content: center;
-
-
+    justify-content: left;
 }
 
 .formcategory{
@@ -123,6 +149,10 @@ a{
     vertical-align: -.125em;
 }
 
-label{
+label {
     color: $text-color;
+}
+
+.btn-link {
+    text-decoration: none;
 }

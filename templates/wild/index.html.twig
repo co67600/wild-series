@@ -6,16 +6,29 @@
     <h1>Toutes les séries disponibles : </h1>
     <div class="row">
     {% for program in programs %}
-            <div class="col-md-4" >
-                <img class="card-img-top"src="{{program.poster}}" alt="{{ program.title }} poster">
-                <div class="card-body">
-                    <a href="{{ path('wild_show',{"slug" : program.slug | lower | replace({" " : "-"})}) }}">
-                    <h2 class="">{{ loop.index }} - {{ program.title }}</h2>
-                    <h5>Catégorie : {{ program.category.name }}</h5>
-                    <p>{{ program.summary }}</p>
-                    </a>
+        <div class="col-md-3">
+        <div id="accordion">
+            <div class="">
+                <div class="card-img">
+                <a href="{{ path('wild_show',{"slug" : program.slug | lower | replace({" " : "-"})}) }}">
+                    <img class="card-img-top" src="{{program.poster}}" alt="{{ program.title }}">
+                </a>
+                </div>
+                <div class="card-header text-center" id="headingOne">
+                    <h3>Catégorie : {{ program.category.name }}</h3>
+                    <h2 class="">{{ program.title }}</h2>
+                    <a href="#collapseOne" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne" >voir le résumé</a>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>{{ program.summary }}</p>
+                    </div>
                 </div>
             </div>
+        </div>
+        </div>
+
 
     {% else %}
         Aucune série trouvée.

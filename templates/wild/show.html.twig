@@ -5,42 +5,43 @@
 
     <div class="card mb-3" style="max-width: 100%;">
         <div class="row no-gutters">
-            <div class="col-md-4">
+            <div class="col-md-3 mt-3">
                  <img class="card-img" src="{{ program.poster }}" alt="{{ program.title }} poster">
             </div>
-             <div class="col-md-8">
+             <div class="col-md-8" style="max-width: 100%;">
                 <div class="card-body">
                     <h1 class="mt-0">{{ program.title }}</h1>
-                    <p>Categorie : {{ program.category.name }}</p>
-                    <h3>{{ program.summary }}</h3>
+                    <h3>Categorie : {{ program.category.name }}</h3>
+                    <h5>{{ program.summary }}</h5>
                     <br>
                     {% set i = 0 %}
-                    {% for season in seasons %}
-                        {% set i = i + 1 %}
-                        <a class="season" href="../season/{{ program.id }}-{{ season.id }}">
-                            <h2>Season {{ i }} / {{ season.year }}</h2>
-                        </a>
-                        <p>{{ season.description}}</p>
-                        <br>
-                    {% endfor %}
-                        <h2>Acteurs :</h2>
+                        {% for season in seasons %}
+                            {% set i = i + 1 %}
+                            <a class="season" href="../season/{{ program.id }}-{{ season.id }}">
+                                <h2>Season {{ i }} / {{ season.year }}</h2>
+                            </a>
+                            <p>{{ season.description}}</p>
+                            <br>
+                        {% endfor %}
+                    <h2>Acteurs :</h2>
+                    <div class="row">
+                        {% for actor in program.actors %}
+                                <a href="../actor/{{ actor.id }}">
+                                    <p>{{ actor.name }} </p>
+                                </a>
+                        {% else %}
+                            <p>Aucun acteur pour cette série</p>
+                        {% endfor %}
+                    </div>
 
-                            {% for actor in program.actors %}
-                    <a  href="../actor/{{ actor.id }}">
-                                <p>{{ actor.name }} </p>
-                            {% else %}
-                                <p>Aucun acteur pour cette série</p>
-                            {% endfor %}
-                    </a>
 
-                    <br>
-                    <br>
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Editer</a>
-                    {%endif%}
                     <a href="{{ path('app_index') }}">
                         Retour à l'accueil
                     </a>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Editer</a>
+                        {%endif%}
+
                 </div>
              </div>
         </div>

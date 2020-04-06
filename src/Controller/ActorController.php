@@ -31,7 +31,7 @@ class ActorController extends AbstractController
      * @param Slugify $slugify
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $actor = new Actor();
         $form = $this->createForm(ActorType::class, $actor);
