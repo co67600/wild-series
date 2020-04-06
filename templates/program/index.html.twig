@@ -11,12 +11,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Slug</th>
-                <th>Title</th>
-                <th>Summary</th>
-                <th>Poster</th>
-                <th>actions</th>
+                <th style="width: 1%">Id</th>
+                <th style="width: 4%">Slug</th>
+                <th style="width: 5%">Title</th>
+                <th style="width: 40%">Summary</th>
+                <th style="width: 10%">Poster</th>
+                <th style="width: 15%">Actors</th>
+                <th style="width: 15%">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +27,14 @@
                 <td>{{ program.slug }}</td>
                 <td>{{ program.title }}</td>
                 <td>{{ program.summary }}</td>
-                <td>{{ program.poster }}</td>
+                <td><img src="{{ program.poster }}" style="width: 40%"></td>
+                <td >
+                {% for actor in program.actors %}
+                    {{ actor.name }},
+                {% else %}
+                    Aucun acteur pour cette série
+                {% endfor %}
+                </td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('program_show', {'slug': program.slug}) }}">Show</a>
                     <br>
