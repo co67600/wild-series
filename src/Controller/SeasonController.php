@@ -38,6 +38,8 @@ class SeasonController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($season);
             $entityManager->flush();
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'La nouvelle saison a bien été ajoutée');
 
             return $this->redirectToRoute('season_index');
         }
@@ -87,6 +89,7 @@ class SeasonController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($season);
             $entityManager->flush();
+            $this->addFlash('danger', 'La saison a bien été supprimée');
         }
 
         return $this->redirectToRoute('season_index');

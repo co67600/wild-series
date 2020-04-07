@@ -44,6 +44,9 @@ class ActorController extends AbstractController
             $entityManager->persist($actor);
             $entityManager->flush();
 
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'Un nouvel acteur  a bien été ajouté');
+
             return $this->redirectToRoute('actor_index');
         }
 
@@ -94,6 +97,7 @@ class ActorController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($actor);
             $entityManager->flush();
+            $this->addFlash('danger', 'Cet acteur a bien été supprimé');
         }
 
         return $this->redirectToRoute('actor_index');

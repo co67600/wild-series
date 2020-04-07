@@ -56,16 +56,19 @@ class ProgramController extends AbstractController
             $entityManager->persist($program);
             $entityManager->flush();
 
-            $email = (new TemplatedEmail())
+//            $email = (new TemplatedEmail())
+//
+//                ->from($_ENV['MAILER_SENDER'])
+//                ->to('cdallongeville22@gmail.com')
+//                ->subject('Une nouvelle série vient d\'être publiée !')
+//                ->htmlTemplate('email/notification.html.twig')
+//                ->context([
+//                'program' => $program,
+//            ]);
+//            $mailer->send($email);
 
-                ->from($_ENV['MAILER_SENDER'])
-                ->to('cdallongeville22@gmail.com')
-                ->subject('Une nouvelle série vient d\'être publiée !')
-                ->htmlTemplate('email/notification.html.twig')
-                ->context([
-                'program' => $program,
-            ]);
-            $mailer->send($email);
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'Le nouveau programme a bien été ajouté');
 
             return $this->redirectToRoute('program_index');
         }
@@ -118,6 +121,8 @@ class ProgramController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($program);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'Le programme a bien été supprimé');
         }
 
         return $this->redirectToRoute('program_index');
