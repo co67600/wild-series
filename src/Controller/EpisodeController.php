@@ -44,6 +44,8 @@ class EpisodeController extends AbstractController
             $entityManager->persist($episode);
             $entityManager->flush();
 
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'Le nouvel épisode  a bien été ajouté');
             return $this->redirectToRoute('episode_index');
         }
 
@@ -94,6 +96,7 @@ class EpisodeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($episode);
             $entityManager->flush();
+            $this->addFlash('danger', 'Cet épisode a bien été supprimé');
         }
 
         return $this->redirectToRoute('episode_index');

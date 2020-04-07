@@ -36,6 +36,8 @@ class CategoryController extends AbstractController
             $category = $form->getData();
             $em->persist($category);
             $em->flush();
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'Un nouvelle catégorie  a bien été ajoutée');
         }
         return $this->render('category/index.html.twig', [
             'form' => $form->createView(),
