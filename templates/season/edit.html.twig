@@ -3,11 +3,11 @@
 {% block title %}Edit Season{% endblock %}
 
 {% block body %}
-    <h1>Edit Season</h1>
+    <h1>{{ 'Season'|trans }}</h1>
 
-    {{ include('season/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('season/_form.html.twig', {'button_label': 'update'|trans}) }}
 
-    <a href="{{ path('season_index') }}">back to list</a>
+    <a href="{{ path('season_index') }}">{{ 'back.list'|trans }}</a>
 
     {{ include('season/_delete_form.html.twig') }}
 {% endblock %}

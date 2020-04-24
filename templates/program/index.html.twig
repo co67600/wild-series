@@ -3,21 +3,21 @@
 {% block title %}Program index{% endblock %}
 
 {% block body %}
-    <h1>Program index</h1>
+    <h1>{{ 'program'|trans }}</h1>
     {% if is_granted("ROLE_ADMIN") %}
-        <a class="btn btn-primary"  href="{{ path('program_new') }}">Créer nouveau</a>
+        <a class="btn btn-primary"  href="{{ path('program_new') }}">{{ 'create.program'|trans }}</a>
     {%endif%}
 
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 1%">Id</th>
+                <th style="width: 1%">{{ 'id'|trans }}</th>
                 <th style="width: 4%">Slug</th>
-                <th style="width: 5%">Title</th>
-                <th style="width: 40%">Summary</th>
-                <th style="width: 10%">Poster</th>
-                <th style="width: 15%">Actors</th>
-                <th style="width: 15%">actions</th>
+                <th style="width: 5%">{{ 'title'|trans }}</th>
+                <th style="width: 40%">{{ 'summary'|trans }}</th>
+                <th style="width: 10%">{{ 'poster'|trans }}</th>
+                <th style="width: 15%">{{ 'actors'|trans }}</th>
+                <th style="width: 15%">{{ 'actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,15 +32,15 @@
                 {% for actor in program.actors %}
                     {{ actor.name }},
                 {% else %}
-                    Aucun acteur pour cette série
+                    {{ 'no.actor'|trans }}
                 {% endfor %}
                 </td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('program_show', {'slug': program.slug}) }}">Show</a>
+                    <a class="btn btn-primary" href="{{ path('program_show', {'slug': program.slug}) }}">{{ 'show'|trans }}</a>
                     <br>
                     <br>
                     {% if is_granted("ROLE_ADMIN") %}
-                        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">{{ 'edit'|trans }}</a>
                     {%endif%}
 
                 </td>
@@ -53,7 +53,7 @@
         </tbody>
     </table>
     {% if is_granted("ROLE_ADMIN") %}
-        <a class="btn btn-primary"  href="{{ path('program_new') }}">Créer nouveau</a>
+        <a class="btn btn-primary"  href="{{ path('program_new') }}">{{ 'create.program'|trans }}</a>
     {%endif%}
 
 {% endblock %}

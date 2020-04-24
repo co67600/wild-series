@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="CDjx2ju" resname="hello_username">
+        <source>hello_username</source>
+        <target>Bonjour %username%</target>
+      </trans-unit>
+      <trans-unit id="Q7UTU9q" resname="account.logout">
+        <source>account.logout</source>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="E_t5j6Q" resname="account.login">
+        <source>account.login</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="piFuoD5" resname="categories">
+        <source>categories</source>
+        <target>Catégories</target>
+      </trans-unit>
+      <trans-unit id="nNo46jo" resname="series">
+        <source>series</source>
+        <target>Séries</target>
+      </trans-unit>
+      <trans-unit id="rFBjZWb" resname="acteurs">
+        <source>acteurs</source>
+        <target>Acteurs</target>
+      </trans-unit>
+      <trans-unit id="fPCisk1" resname="available.series">
+        <source>available.series</source>
+        <target>Toutes les séries disponibles</target>
+      </trans-unit>
+      <trans-unit id="MkPPJ64" resname="resume.series">
+        <source>resume.series</source>
+        <target>Voir le résumé</target>
+      </trans-unit>
+      <trans-unit id="Xt4Azdv" resname="no.series">
+        <source>no.series</source>
+        <target>Aucune série trouvée</target>
+      </trans-unit>
+      <trans-unit id="6GKWFos" resname="back.home">
+        <source>back.home</source>
+        <target>Retour à l'accueil</target>
+      </trans-unit>
+      <trans-unit id="IthU9Ij" resname="no.actors">
+        <source>no.actors</source>
+        <target>Aucun acteur pour cette série</target>
+      </trans-unit>
+      <trans-unit id="JiEhxTc" resname="edit">
+        <source>edit</source>
+        <target>Editer</target>
+      </trans-unit>
+      <trans-unit id="QE.SRzg" resname="page.number">
+        <source>page.number</source>
+        <target>Page n°</target>
+      </trans-unit>
+      <trans-unit id="8RAZ426" resname="detail.season">
+        <source>detail.season</source>
+        <target>Détail de la saison</target>
+      </trans-unit>
+      <trans-unit id="TLTqJVg" resname="year">
+        <source>year</source>
+        <target>Année</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="QzD1WXM" resname="detail.episode">
+        <source>detail.episode</source>
+        <target>Détail de l'épisode</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="gYuo5o1" resname="number.episode">
+        <source>number.episode</source>
+        <target>Episode n°</target>
+      </trans-unit>
+      <trans-unit id="jZ_AtP6" resname="synopsis">
+        <source>synopsis</source>
+        <target>Synopsis</target>
+      </trans-unit>
+      <trans-unit id="K0JE_yZ" resname="comments">
+        <source>comments</source>
+        <target>Commentaires</target>
+      </trans-unit>
+      <trans-unit id=".SiHT4u" resname="comments.by">
+        <source>comments.by</source>
+        <target>Commenté par</target>
+      </trans-unit>
+      <trans-unit id="d4XC6rL" resname="comments.rate">
+        <source>comments.rate</source>
+        <target>Note</target>
+      </trans-unit>
+      <trans-unit id="18e6VBc" resname="comments.new">
+        <source>comments.new</source>
+        <target>Laisser un commentaire</target>
+      </trans-unit>
+      <trans-unit id="7bLNO3T" resname="category">
+        <source>category</source>
+        <target>Catégorie</target>
+      </trans-unit>
+      <trans-unit id="j44k9lx" resname="season">
+        <source>season</source>
+        <target>Saison</target>
+      </trans-unit>
+      <trans-unit id="YFtyfT9" resname="actors">
+        <source>actors</source>
+        <target>Acteurs</target>
+      </trans-unit>
+      <trans-unit id="fkFOasQ" resname="episode">
+        <source>episode</source>
+        <target>Episode</target>
+      </trans-unit>
+      <trans-unit id="b8mPp_J" resname="list.category">
+        <source>list.category</source>
+        <target>Catégorie</target>
+      </trans-unit>
+      <trans-unit id="KQd3OzL" resname="create.account">
+        <source>create.account</source>
+        <target>Créer un compte</target>
+      </trans-unit>
+      <trans-unit id="foGmrel" resname="sign.in">
+        <source>sign.in</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="QoghNQ6" resname="login">
+        <source>login</source>
+        <target>Identifiant</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="GQDqtsA" resname="profile">
+        <source>profile</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="utK4k_W" resname="Season">
+        <source>Season</source>
+        <target>Season</target>
+      </trans-unit>
+      <trans-unit id="vEPheIw" resname="back.list">
+        <source>back.list</source>
+        <target>Retour à la liste</target>
+      </trans-unit>
+      <trans-unit id="vMPawpv" resname="create.season">
+        <source>create.season</source>
+        <target>Créer une season</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="EohvnQA" resname="number">
+        <source>number</source>
+        <target>Numéro</target>
+      </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="HGMzUJ3" resname="show">
+        <source>show</source>
+        <target>Voir</target>
+      </trans-unit>
+      <trans-unit id="8Lsv1wB" resname="create.category">
+        <source>create.category</source>
+        <target>Ajouter une nouvelle catégorie</target>
+      </trans-unit>
+      <trans-unit id="YZdZVQP" resname="delete">
+        <source>delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="jzx1DTm" resname="create.episode">
+        <source>create.episode</source>
+        <target>Ajouter un nouvel épisode</target>
+      </trans-unit>
+      <trans-unit id="ExDKLIk" resname="program">
+        <source>program</source>
+        <target>Séries</target>
+      </trans-unit>
+      <trans-unit id="UT6elS_" resname="create.program">
+        <source>create.program</source>
+        <target>Ajouter une nouvelle série</target>
+      </trans-unit>
+      <trans-unit id="dht62K1" resname="summary">
+        <source>summary</source>
+        <target>Résumé</target>
+      </trans-unit>
+      <trans-unit id="KTuSByK" resname="poster">
+        <source>poster</source>
+        <target>Affiche</target>
+      </trans-unit>
+      <trans-unit id="qQHTbV0" resname="no.actor">
+        <source>no.actor</source>
+        <target>Aucun acteur pour cette série</target>
+      </trans-unit>
+      <trans-unit id="fkJF9ON" resname="create.actor">
+        <source>create.actor</source>
+        <target>Ajouter un nouvel acteur</target>
+      </trans-unit>
+      <trans-unit id="YAiCwL5" resname="name.actor">
+        <source>name.actor</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="KTcBPyG" resname="update">
+        <source>update</source>
+        <target>Mettre à jour</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

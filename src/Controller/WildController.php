@@ -28,9 +28,9 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 
 
-
 Class WildController extends AbstractController
 {
+
     public function showByProgram($program) {
         return $program->getSeasons();
     }

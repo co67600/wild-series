@@ -6,12 +6,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/"><img src="{{ asset('build/images/logowildseries.png') }}" alt="logo"> <span class="sr-only">(current)</span></a>
-
+                <a class="nav-link" href="{{ path('wild_index') }}"><img src="{{ asset('build/images/logowildseries.png') }}" alt="logo"> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Catégories
+                    {{ 'categories'|trans }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   {# <a class="dropdown-item" href="{{ path('show_category', { 'categoryName': "Horreur" }) }}">Horreur</a>#}
@@ -23,7 +22,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Séries
+                    {{ 'series'|trans }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for program in programsAll.getAll %}
@@ -34,7 +33,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Acteurs
+                    {{ 'acteurs'|trans }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for actor in actorsAll.getAll %}
@@ -43,17 +42,17 @@
 
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Mes favoris
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
+{#            <li class="nav-item dropdown">#}
+{#                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                    Mes favoris#}
+{#                </a>#}
+{#                <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#                    <a class="dropdown-item" href="#">Action</a>#}
+{#                    <a class="dropdown-item" href="#">Another action</a>#}
+{#                    <div class="dropdown-divider"></div>#}
+{#                    <a class="dropdown-item" href="#">Something else here</a>#}
+{#                </div>#}
+{#            </li>#}
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
@@ -61,12 +60,29 @@
             <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
         {% if app.user %}
-            {{ app.user.email }}
-            <a class="btn btn-light my-2 my-sm-0" href="{{ path('app_logout') }}"> Se déconnecter</a>
+            <div class="username">
+                {% trans with {'%username%': app.user.email} %}
+                    hello_username
+                {% endtrans %} !
+            </div>
+            <a class="btn btn-light my-2 my-sm-0" href="{{ path('app_logout') }}"> {{ 'account.logout'|trans }} </a>
             <a class="btn" href="{{ path('app_profile') }}"> <i class="far fa-user-circle"></i></a>
         {% else %}
-            <a class="btn btn-light my-2 my-sm-0" href="{{ path('app_login') }}"> Se connecter</a>
+            <a class="btn btn-light my-2 my-sm-0" href="{{ path('app_login') }}"> {{ 'account.login'|trans }}</a>
         {% endif %}
+
+            <ul class="navbar-nav">
+                <li >
+                    <a href="/fr/wild/" class="mr-2" rel="fr-FR"><img src="{{ asset('build/images/fr.png') }}" alt="fr"></a>
+                </li>
+                <li >
+                    <a href="/en/wild/" class="mr-2" rel="en-EN"><img src="{{ asset('build/images/en.png') }}" alt="en"></a>
+                </li>
+                <li >
+                    <a href="/es/wild/" class="" rel="es-ES"><img src="{{ asset('build/images/es.png') }}" alt="es"></a>
+                </li>
+            </ul>
+
 
     </div>
 </nav>

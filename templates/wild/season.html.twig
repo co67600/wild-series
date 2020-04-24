@@ -14,18 +14,13 @@
 
     {% for episode in episodes %}
         <a href="{{ path('wild_episode', { 'id' : episode.id } ) }}">
-        <h4>Episode {{ episode.number }} : {{ episode.title }}</h4>
+        <h4>{{ 'episode'|trans }} {{ episode.number }} : {{ episode.title }}</h4>
         </a>
         <p>{{ episode.synopsis }}</p>
     {% endfor %}
 
-
-
-
-
-
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'back.home'|trans }}
     </a>
 
 {% endblock %}

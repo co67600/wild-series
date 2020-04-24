@@ -3,7 +3,7 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries disponibles : </h1>
+    <h1>{{ 'available.series'|trans }}</h1>
     <div class="row">
     {% for program in programs %}
         <div class="col-md-3">
@@ -15,9 +15,9 @@
                 </a>
                 </div>
                 <div class="card-header text-center" id="headingOne">
-                    <h3>Catégorie : {{ program.category.name }}</h3>
+                    <h3>{{ 'category'|trans }} {{ program.category.name }}</h3>
                     <h2 class="">{{ program.title }}</h2>
-                    <a href="#collapseOne" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne" >voir le résumé</a>
+                    <a href="#collapseOne" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne" >{{ 'resume.series'|trans }}</a>
                 </div>
 
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -31,13 +31,13 @@
 
 
     {% else %}
-        Aucune série trouvée.
+        {{ 'no.series'|trans }}
 
     {% endfor %}
     </div>
 
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'back.home'|trans }}
     </a>
 {% endblock %}
 
