@@ -3,17 +3,17 @@
 
 {% block body %}
 <div>
-    <h1>Liste des 3 dernières séries de la catégorie {{ category }}</h1>
+    <h1>{{ 'list.category'|trans }} {{ category }}</h1>
     {% for program in programs %}
         <a href="{{ path('wild_show',{"slug" : program.title | lower | replace({" " : "-"})}) }}">
-    <h2>Série : {{ program.title }} </h2>
+    <h2>{{ 'series'|trans }} {{ program.title }} </h2>
         </a>
     <p> {{ program.summary }}</p>
     {% endfor %}
 </div>
 
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'back.home'|trans }}
     </a>
 
 {% endblock %}

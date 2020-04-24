@@ -11,23 +11,23 @@
                 <div class="card-body">
                     <h3 class="mt-0">{{ program.title }} </h3>
                         <p>{{ program.summary }}</p>
-                    <h3 class="mt-0">Détail de la saison  </h3>
-                        <p>Année : {{ season.year }}</p>
-                        <p>Description : {{ season.description }}</p>
-                    <h3 class="mt-0">Détail de l'épisode  </h3>
-                        <p>Titre : {{ episode.title }}</p>
-                        <p>Épisode numéro  {{ episode.number }}</p>
-                        <p>Synopsis : {{ episode.synopsis }}</p>
+                    <h3 class="mt-0">{{ 'detail.season'|trans }} </h3>
+                        <p>{{ 'year'|trans }} {{ season.year }}</p>
+                        <p>{{ 'description'|trans }} {{ season.description }}</p>
+                    <h3 class="mt-0">{{ 'detail.episode'|trans }}  </h3>
+                        <p>{{ 'title'|trans }} {{ episode.title }}</p>
+                        <p>{{ 'number.episode'|trans }}  {{ episode.number }}</p>
+                        <p>{{ 'synopsis'|trans }} {{ episode.synopsis }}</p>
                     {% if comments is defined %}
-                    <h3 class="mt-0">Commentaires  </h3>
+                    <h3 class="mt-0">{{ 'comments'|trans }} </h3>
                         {% for comment in comments %}
                                 <div>
-                                    <h2>Commentaire laissé par : utilisateur {{ comment.authorId }}</h2>
+                                    <h2>{{ 'comments.by'|trans }}  {{ comment.authorId }}</h2>
                                     <p >{{ comment.comment }}</p>
-                                    <p >note : {{ comment.rate }}</p>
+                                    <p >{{ 'comments.rate'|trans }} {{ comment.rate }}</p>
                                 </div>
                         {% endfor %}
-                        <h3 class="mt-0">Laissez votre commentaire  </h3>
+                        <h3 class="mt-0">{{ 'comments.new'|trans }}</h3>
                     {% endif %}
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
@@ -38,7 +38,7 @@
     </div>
 
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'back.home'|trans }}
     </a>
 
 {% endblock %}

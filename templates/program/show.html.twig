@@ -3,33 +3,33 @@
 {% block title %}Program{% endblock %}
 
 {% block body %}
-    <h1>Program</h1>
+    <h1>{{ 'program'|trans }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'id'|trans }}</th>
                 <td>{{ program.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>{{ 'title'|trans }}</th>
                 <td>{{ program.title }}</td>
             </tr>
             <tr>
-                <th>Summary</th>
+                <th>{{ 'summary'|trans }}</th>
                 <td>{{ program.summary }}</td>
             </tr>
             <tr>
-                <th>Poster</th>
+                <th>{{ 'poster'|trans }}</th>
                 <td>{{ program.poster }}</td>
             </tr>
             <tr>
-                <th>Acteurs</th>
+                <th>{{ 'actors'|trans }}</th>
                 <td>
                     {% for actor in program.actors %}
                         <a href="{{path('actor_show',{'slug': actor.slug })}}">{{actor.name}}</a>
                     {% else %}
-                        Aucun acteur pour cette série
+                        {{ 'no.actor'|trans }}
                     {% endfor %}
                 </td>
             </tr>
@@ -37,9 +37,9 @@
     </table>
 
     {% if is_granted("ROLE_ADMIN") %}
-        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">Edit</a>
+        <a class="btn btn-primary" href="{{ path('program_edit', {'slug': program.slug}) }}">{{ 'edit'|trans }}</a>
     {%endif%}
 
-    <a href="{{ path('program_index') }}">back to list</a>
+    <a href="{{ path('program_index') }}">{{ 'back.list'|trans }}</a>
     <br>
 {% endblock %}

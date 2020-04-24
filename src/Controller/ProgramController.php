@@ -67,6 +67,7 @@ class ProgramController extends AbstractController
 //            ]);
 //            $mailer->send($email);
 
+
             // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
             $this->addFlash('success', 'Le nouveau programme a bien été ajouté');
 

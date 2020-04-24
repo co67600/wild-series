@@ -3,7 +3,7 @@
 {% block title %}Ajouter une categorie{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une catégorie : </h1>
+    <h1>{{ 'create.category'|trans }} </h1>
     <div class="formcategory">
         {{ form_start(form) }}
         <div class="row">
@@ -17,7 +17,7 @@
         </div>
     </div>
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'back.home'|trans }}
     </a>
 
 {% endblock %}
