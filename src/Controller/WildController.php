@@ -12,6 +12,7 @@ use App\Form\CategoryType;
 use App\Form\ActorType;
 use App\Form\CommentType;
 use App\Form\ProgramSearchType;
+use App\Repository\CategoryRepository;
 use App\Repository\EpisodeRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,6 +50,8 @@ Class WildController extends AbstractController
             ->findAll();
         return $categories;
     }
+
+
 
 
     /**
@@ -89,6 +92,16 @@ Class WildController extends AbstractController
                 //'category' => $category,
                 ]
         );
+    }
+
+    /**
+     * @Route("/category_navbar", name="category_navbar", methods={"GET"})
+     */
+    public function indexNavbar(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('wild/_category.html.twig', [
+            'categories' => $categoryRepository->findAll(),
+        ]);
     }
 
     /**

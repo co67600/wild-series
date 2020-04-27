@@ -13,10 +13,11 @@
                     {{ 'categories'|trans }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {# <a class="dropdown-item" href="{{ path('show_category', { 'categoryName': "Horreur" }) }}">Horreur</a>#}
-                    {% for category in categoriesAll.getAll %}
-                        <a class="dropdown-item" href="{{ path('show_category', { "categoryName" : category.name }) }}">{{ category.name }}</a>
-                    {% endfor %}
+                    {{ render(path('category_navbar')) }}
+                   {# {% for category in categoriesAll.getAll %}
+                        <a class="dropdown-item" href="{{ render(controller(
+                            'App\\Controller\\WildController::getAllCategories'))}}#}{#{{ path('show_category', { "categoryName" : category.name }) }}#}{#">{{ category.name }}</a>
+                    {% endfor %}#}
 
                 </div>
             </li>
