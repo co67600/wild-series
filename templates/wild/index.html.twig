@@ -11,16 +11,16 @@
             <div class="">
                 <div class="card-img">
                 <a href="{{ path('wild_show',{"slug" : program.slug | lower | replace({" " : "-"})}) }}">
-                    <img class="card-img-top" src="{{program.poster}}" alt="{{ program.title }}">
+                    <img class="card-img-top" src="{{ asset('uploads/'~program.poster) }}" alt="{{ program.title }}">
                 </a>
                 </div>
                 <div class="card-header text-center" id="headingOne">
                     <h3>{{ 'category'|trans }} {{ program.category.name }}</h3>
                     <h2 class="">{{ program.title }}</h2>
-                    <a href="#collapseOne" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne" >{{ 'resume.series'|trans }}</a>
+                    <a href="#collapseOne" data-toggle="collapse" >{{ 'resume.series'|trans }}</a>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         <p>{{ program.summary }}</p>
                     </div>

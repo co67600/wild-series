@@ -4,8 +4,8 @@
 
     <div class="card mb-3" style="max-width: 100%;">
         <div class="row no-gutters">
-            <div class="col-md-4">
-                <img class="card-img" src="{{ program.poster }}">
+            <div class="col-md-3 mt-4">
+                <img class="card-img" src="{{ asset('uploads/'~program.poster) }}">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -18,6 +18,17 @@
                         <p>{{ 'title'|trans }} {{ episode.title }}</p>
                         <p>{{ 'number.episode'|trans }}  {{ episode.number }}</p>
                         <p>{{ 'synopsis'|trans }} {{ episode.synopsis }}</p>
+                    <h3>{{ 'actors'|trans }}</h3>
+                    <div class="row h-100 justify-content-center">
+                        {% for actor in program.actors %}
+                            <a href="../actor/{{ actor.id }}">
+                                <div class="mr-4">{{ actor.name }} </div>
+                                <div class="roundedImage"><img src="{{ asset('uploads/'~actor.poster) }}"></div>
+                            </a>
+                        {% else %}
+                            <p>{{ 'no.actors'|trans }}</p>
+                        {% endfor %}
+                    </div>
                     {% if comments is defined %}
                     <h3 class="mt-0">{{ 'comments'|trans }} </h3>
                         {% for comment in comments %}

@@ -6,6 +6,7 @@ use App\Entity\Actor;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,6 +69,7 @@ class ActorController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="actor_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Actor $actor): Response
     {
@@ -75,9 +77,11 @@ class ActorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $slug = $slugify->generate($actor->getName());
-            $actor->setSlug($slug);
-            $this->getDoctrine()->getManager()->flush();
+//            $slug = $slugify->generate($actor->getName());
+//            $actor->setSlug($slug);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($actor);
+            $entityManager->flush();
 
             return $this->redirectToRoute('actor_index');
         }
@@ -90,6 +94,7 @@ class ActorController extends AbstractController
 
     /**
      * @Route("/{slug}", name="actor_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Actor $actor): Response
     {
