@@ -13,16 +13,18 @@
                 <th>{{ 'id'|trans }}</th>
                 <th>{{ 'name.actor'|trans }}</th>
                 <th>Slug</th>
+                <th>{{ 'poster'|trans }}</th>
                 <th>{{ 'actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
         {% for actor in actors %}
             <tr>
-                <td>{{ actor.id }}</td>
-                <td>{{ actor.name }}</td>
-                <td>{{ actor.slug }}</td>
-                <td>
+                <td class="align-middle">{{ actor.id }}</td>
+                <td class="align-middle">{{ actor.name }}</td>
+                <td class="align-middle">{{ actor.slug }}</td>
+                <td class="align-middle"><div class="roundedImage"><img src="{{ asset('uploads/'~actor.poster) }}"></div></td>
+                <td class="align-middle">
                     <a class="btn btn-primary" href="{{ path('actor_show', {'slug': actor.slug}) }}">{{ 'show'|trans }}</a>
                     {% if is_granted("ROLE_ADMIN") %}
                         <a class="btn btn-primary" href="{{ path('actor_edit', {'slug': actor.slug}) }}">{{ 'edit'|trans }}</a>

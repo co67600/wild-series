@@ -39,6 +39,7 @@ class ProgramController extends AbstractController
      * @Route("/new", name="program_new", methods={"GET","POST"})
      * @param Request $request
      * @param Slugify $slugify
+     * @IsGranted("ROLE_ADMIN")
      * @return Response
      * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
@@ -100,9 +101,13 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $slug = $slugify->generate($program->getTitle());
-            $program->setSlug($slug);
-            $this->getDoctrine()->getManager()->flush();
+//            $slug = $slugify->generate($program->getTitle());
+//            $program->setSlug($slug);
+
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($program);
+            $entityManager->flush();
 
             return $this->redirectToRoute('program_index');
         }
@@ -115,6 +120,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/{slug}", name="program_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Program $program): Response
     {

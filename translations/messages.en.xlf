@@ -75,7 +75,7 @@
       </trans-unit>
       <trans-unit id="qvIyBkY" resname="title">
         <source>title</source>
-        <target>Title</target>
+        <target>Title :</target>
       </trans-unit>
       <trans-unit id="gYuo5o1" resname="number.episode">
         <source>number.episode</source>

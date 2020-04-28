@@ -5,8 +5,8 @@
 
     <div class="card mb-3" style="max-width: 100%;">
         <div class="row no-gutters">
-            <div class="col-md-3 mt-3">
-                 <img class="card-img" src="{{ program.poster }}" alt="{{ program.title }} poster">
+            <div class="col-md-3 mt-5">
+                 <img class="card-img" src="{{ asset('uploads/'~program.poster) }}" alt="{{ program.title }} poster">
             </div>
              <div class="col-md-8" style="max-width: 100%;">
                 <div class="card-body">
@@ -27,7 +27,8 @@
                     <div class="row">
                         {% for actor in program.actors %}
                                 <a href="../actor/{{ actor.id }}">
-                                    <p>{{ actor.name }} </p>
+                                    <div class="mr-4">{{ actor.name }} </div>
+                                    <div class="roundedImage"><img src="{{ asset('uploads/'~actor.poster) }}"></div>
                                 </a>
                         {% else %}
                             <p>{{ 'no.actors'|trans }}</p>
