@@ -217,6 +217,18 @@
         <source>update</source>
         <target>Actualizar</target>
       </trans-unit>
+      <trans-unit id="Qz1CGAO" resname="favoris">
+        <source>favoris</source>
+        <target>Favoritos</target>
+      </trans-unit>
+      <trans-unit id="i0hmopY" resname="all.programs">
+        <source>all.programs</source>
+        <target>Todas las series</target>
+      </trans-unit>
+      <trans-unit id="RKAy3kE" resname="all.actors">
+        <source>all.actors</source>
+        <target>Todos los actores</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

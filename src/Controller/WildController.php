@@ -8,19 +8,26 @@ use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Entity\Support;
 use App\Form\CategoryType;
 use App\Form\ActorType;
 use App\Form\CommentType;
 use App\Form\ProgramSearchType;
+use App\Form\SearchType;
 use App\Repository\CategoryRepository;
 use App\Repository\EpisodeRepository;
+use App\Repository\ProgramRepository;
+use App\Repository\SupportRepository;
+use App\Service\Slugify;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use PhpParser\Node\Expr\New_;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -246,6 +253,87 @@ Class WildController extends AbstractController
                 'actor' => $actor,
             ]
         );
+    }
+
+    /**
+     * @Route("/recherche", name="search")
+     */
+    public function recherche(Request $request, ProgramRepository $repo, PaginatorInterface $paginator) {
+
+        $searchForm = $this->createForm(SearchType::class);
+        $searchForm->handleRequest($request);
+
+        $donnees = $repo->findAll();
+
+        if ($searchForm->isSubmitted()) {
+
+            $title = $searchForm->getData()->getTitle();
+            $donnees = $repo->search($title);
+
+
+            if ($donnees == null) {
+                $this->addFlash('erreur', 'Aucune série contenant ce mot clé dans le titre n\'a été trouvée, essayez en une autre.');
+
+            }
+
+        }
+
+        // Paginate the results of the query
+        $programs = $paginator->paginate(
+        // Doctrine Query, not results
+            $donnees,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            4
+        );
+
+        return $this->render('wild/search.html.twig', [
+            'programs' => $programs,
+            'searchForm' => $searchForm->createView()
+        ]);
+
+    }
+
+    /**
+     * @Route("program/{slug}/favoris", name="program_show_favoris")
+     * @param Program $program
+     * @param SupportRepository $supProRepo
+     * @return RedirectResponse
+     */
+    public function modifyToFavoris(Program $program, SupportRepository $supProRepo)
+    {
+        $user = $this->getUser();
+
+        $favoris = $supProRepo -> findOneBy(['program'=>$program, 'user'=>$user, 'support'=>2]);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if (!$favoris) {
+            $supportProgram = new Support;
+            $supportProgram->setProgram($program);
+            $supportProgram->setUser($user);
+            $supportProgram->setSupport(2);
+
+            $entityManager->persist($supportProgram);
+            $entityManager->flush();
+            $this->addFlash('success', 'Série ajoutée à vos favoris');
+        } else {
+            $entityManager->remove($favoris);
+            $entityManager->flush();
+            $this->addFlash('warning', 'Série supprimée de vos favoris');
+        }
+
+        return $this->redirectToRoute('wild_show', ['slug'=>$program->getSlug()]);
+    }
+
+    /**
+     * @Route("/support_navbar", name="support_navbar", methods={"GET"})
+     */
+    public function supportNavbar(SupportRepository $supportRepository): Response
+    {
+        return $this->render('wild/_support.html.twig', [
+            'favoris' => $supportRepository->findBy(),
+        ]);
     }
 
 }

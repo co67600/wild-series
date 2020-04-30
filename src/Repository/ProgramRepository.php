@@ -40,6 +40,16 @@ class ProgramRepository extends ServiceEntityRepository
         return $qb->execute();
     }
 
+    public function search($title) {
+        $qb =  $this->_em-> createQueryBuilder()
+            ->select('p')
+            ->from(Program::class,'p')
+            ->Where('p.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery();
+
+        return $qb->execute();
+    }
 
 
     // /**
