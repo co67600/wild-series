@@ -1,0 +1,4 @@
+{% for favori in favoris %}
+    <a class="dropdown-item" href="{{ path('wild_show',{'slug':favori.program.title})  }}">{{ favori.program.title  }}</a>
+{% endfor %}
+

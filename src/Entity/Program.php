@@ -95,11 +95,17 @@ class Program
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Support", mappedBy="program")
+     */
+    private $supports;
+
 
     public function __construct()
     {
         $this->seasons = new ArrayCollection();
         $this->actors = new ArrayCollection();
+        $this->supports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -253,6 +259,37 @@ class Program
     public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return Collection|Support[]
+     */
+    public function getSupports(): Collection
+    {
+        return $this->supports;
+    }
+
+    public function addSupport(Support $support): self
+    {
+        if (!$this->supports->contains($support)) {
+            $this->supports[] = $support;
+            $support->setProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSupport(Support $support): self
+    {
+        if ($this->supports->contains($support)) {
+            $this->supports->removeElement($support);
+            // set the owning side to null (unless already changed)
+            if ($support->getProgram() === $this) {
+                $support->setProgram(null);
+            }
+        }
+
+        return $this;
     }
 
 

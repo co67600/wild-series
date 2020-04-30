@@ -42,11 +42,17 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Support", mappedBy="user")
+     */
+    private $supports;
+
 
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->supports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,6 +131,37 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Support[]
+     */
+    public function getSupports(): Collection
+    {
+        return $this->supports;
+    }
+
+    public function addSupport(Support $support): self
+    {
+        if (!$this->supports->contains($support)) {
+            $this->supports[] = $support;
+            $support->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSupport(Support $support): self
+    {
+        if ($this->supports->contains($support)) {
+            $this->supports->removeElement($support);
+            // set the owning side to null (unless already changed)
+            if ($support->getUser() === $this) {
+                $support->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 

@@ -4,13 +4,21 @@
 {% block body %}
 
     <div class="card mb-3" style="max-width: 100%;">
-        <div class="row no-gutters">
+        <div class="row no-gutters justify-content-center">
             <div class="col-md-3 mt-5">
                  <img class="card-img" src="{{ asset('uploads/'~program.poster) }}" alt="{{ program.title }} poster">
             </div>
              <div class="col-md-8" style="max-width: 100%;">
                 <div class="card-body">
+                    <div class="row justify-content-center">
                     <h1 class="mt-0">{{ program.title }}</h1>
+
+                        <button type="button" class="btn" name="btn-favoris" >
+                            <a href="{{ path('program_show_favoris',{'slug':program.slug}) }}" class="link tooltip-link"
+                               data-toggle="tooltip"
+                               data-original-title="Ajouter aux favoris" ><i class="fas fa-star" style="color:#FFFFFF" ></i></a></button>
+
+                    </div>
                     <h3>{{ 'category'|trans }} {{ program.category.name }}</h3>
                     <h5>{{ program.summary }}</h5>
                     <br>
@@ -24,7 +32,7 @@
                             <br>
                         {% endfor %}
                     <h2>{{ 'actors'|trans }}</h2>
-                    <div class="row">
+                    <div class="row justify-content-center">
                         {% for actor in program.actors %}
                                 <a href="../actor/{{ actor.id }}">
                                     <div class="mr-4">{{ actor.name }} </div>
@@ -48,5 +56,10 @@
     </div>
 
 
-
+    <script>
+        $(function()
+        {
+            $("tooltip-link").tooltip();
+        });
+    </script>
 {% endblock %}

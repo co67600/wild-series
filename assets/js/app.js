@@ -19,3 +19,8 @@ require('@fortawesome/fontawesome-free/js/all.js');
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
+$(function()
+{
+    $(".tooltip-link").tooltip();
+})
+
