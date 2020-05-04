@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,9 +15,18 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('comment')
-            ->add('rate', IntegerType::class)
+            ->add('rate', ChoiceType::class,
+                ['choices'  => [
+                    '0' => 0,
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                ],
+                ]
+            );
 
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

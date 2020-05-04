@@ -35,14 +35,22 @@
                                 <div>
                                     <h2>{{ 'comments.by'|trans }}  {{ comment.authorId }}</h2>
                                     <p >{{ comment.comment }}</p>
-                                    {#<p >{{ 'comments.rate'|trans }} {{ comment.rate }}</p>#}
-                                    <div class="rating">
-                                        <a href="#5" title="Donner 5 étoiles">☆</a>
-                                        <a href="#4" title="Donner 4 étoiles">☆</a>
-                                        <a href="#3" title="Donner 3 étoiles">☆</a>
-                                        <a href="#2" title="Donner 2 étoiles">☆</a>
-                                        <a href="#1" title="Donner 1 étoile">☆</a>
-                                    </div>
+                                    <p >
+                                    {% if comment.rate == 0 %}
+                                        Pas de note
+                                    {% else %}
+                                        {% for i in 1..comment.rate %}
+                                            <i class="fas fa-star"></i>
+                                        {% endfor %}
+                                        {% for i in comment.rate..4 %}
+                                            {% if comment.rate == 5 %}
+                                            {% else %}
+                                                <i class="far fa-star"></i>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% endif %}
+                                    </p>
                                 </div>
                         {% endfor %}
                         <h3 class="mt-0">{{ 'comments.new'|trans }}</h3>
